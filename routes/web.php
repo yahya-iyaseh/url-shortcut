@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\URLGenerator;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('yahyaurl', URLGenerator::class)->middleware('auth');
+Route::get('/test', function () {
+    $uuid = uniqid();
+
+    dd($uuid);
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
