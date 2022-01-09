@@ -1,7 +1,7 @@
     <ul class="navbar-nav sidebar sidebar-primary accordion" id="accordionSidebar">
-      <a class="sidebar-brand bg-light d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand bg-light d-flex align-items-center justify-content-center" href="{{ route('home') }}">
         <div class="sidebar-brand-icon">
-          <img src="{{ asset('public/images/brand2.png') }}" >
+          <img src="{{ asset('images/brand2.png') }}" >
         </div>
       </a>
       <hr class="sidebar-divider my-0">

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\URLGenerator;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class URLGeneratorController extends Controller
 {
@@ -13,7 +16,7 @@ class URLGeneratorController extends Controller
      */
     public function index()
     {
-        
+        return view('user.index');
     }
 
     /**
@@ -23,7 +26,9 @@ class URLGeneratorController extends Controller
      */
     public function create()
     {
-        //
+        $generator = new URLGenerator;
+
+        return view('user.create', compact('generator'));
     }
 
     /**
@@ -34,7 +39,10 @@ class URLGeneratorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, $this->rules());
+        URLGenerator::create($this->attributes($request));
+        notify()->success('The URL Shortcut created successfully', 'Create URL Shortcut');
+        return redirect()->route('yahyaurl.index');
     }
 
     /**
@@ -80,5 +88,31 @@ class URLGeneratorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function rules($id = null){
+        return[
+            'url'=> ['required', 'url', Rule::unique('u_r_l_generators', 'url')->ignore($id)],
+            'data'=> ['nullable', 'string', 'max:255'],
+        ];
+    }
+    protected function attributes($request = null){
+                $un = uniqid();
+                $urlBase =url('/');
+                $url_generator = $urlBase . '/' . $un ;
+                // dd($url_generator);
+                $user_id = Auth::user()->id;
+                if($request->access){
+                    $access = true;
+                }else{
+                    $access = false;
+                }
+        return [
+            'url' => $request->url,
+            'un' => $un,
+            'access'=> $access ,
+            'url_generator'=> $url_generator,
+            'user_id'=> $user_id ,
+        ];
     }
 }

@@ -2,6 +2,8 @@
 
 use App\Models\URLGenerator;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\URLGeneratorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,16 +19,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('yahyaurl', URLGenerator::class)->middleware('auth');
+Route::resource('yahyaurl', URLGeneratorController::class)->middleware('auth');
 Route::get('/test', function () {
     $uuid = uniqid();
 
     dd($uuid);
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/{un}', [RedirectController::class, 'redirect']);
 
 Auth::routes();
 

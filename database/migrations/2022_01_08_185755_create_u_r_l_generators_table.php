@@ -17,7 +17,9 @@ class CreateURLGeneratorsTable extends Migration
             $table->id();
             $table->string('un')->unique();
             $table->text('url');
-
+            $table->string('data')->nullable();
+            $table->text('url_generator');
+            $table->boolean('access');
             $table->foreignId('user_id')
             ->contrained('users', 'id')
             ->cascadeOnDelete()
