@@ -17,13 +17,13 @@ class CreateURLGeneratorsTable extends Migration
             $table->id();
             $table->string('un')->unique();
             $table->text('url');
-            $table->string('data')->nullable();
+            $table->BigInteger('counter')->default(0);
             $table->text('url_generator');
             $table->boolean('access');
             $table->foreignId('user_id')
-            ->contrained('users', 'id')
-            ->cascadeOnDelete()
-            ->cascadeOnUpdate();
+                ->contrained('users', 'id')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }

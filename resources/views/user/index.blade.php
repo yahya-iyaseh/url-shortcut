@@ -1,13 +1,13 @@
 @extends('temtem.layout')
 @push('breadcrumb')
   <li class="breadcrumb-item"><a href="./">Home</a></li>
-  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+  <li class="breadcrumb-item active" aria-current="page">URLs</li>
 @endpush
 
 @section('content')
   <div class="card">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-      <h6 class="m-0 font-weight-bold text-primary">Simple Tables</h6>
+      <h6 class="m-0 font-weight-bold text-primary">User URLs</h6>
     </div>
     <div class="table-responsive">
       <table class="table align-items-center table-flush">
@@ -35,12 +35,12 @@
                 @endif
                 <td>
                   <div class="row">
-                    <div class="col-md-6"><a href="{{ route('yahyaurl.edit', $url->id) }}" class="btn btn-outline-info w-full"><i class="fa fa-edit"></i></a></div>
+                    <div class="col-md-6"><a href="{{ route('yahyaurl.edit', $url->id) }}" class="btn btn-outline-info"><i class="fa fa-edit"></i></a></div>
                     <div class="col-md-6">
-                      <form action="{{ route('yahyaurl.destroy', $url->id) }}" method="post" class=" w-full" onsubmit="return confirm('Do you really want to delete the URL?');">
+                      <form action="{{ route('yahyaurl.destroy', $url->id) }}" method="post" class="" onsubmit="return confirm('Do you really want to delete the URL?');">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger w-full"><i class="fa fa-trash"></i></button>
+                        <button type="submit" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
                       </form>
                     </div>
                   </div>

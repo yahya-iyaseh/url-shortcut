@@ -26,8 +26,8 @@ Route::get('/test', function () {
     dd($uuid);
 });
 
-Route::get('/{un}', [RedirectController::class, 'redirect']);
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/{un}', [RedirectController::class, 'redirect']);
