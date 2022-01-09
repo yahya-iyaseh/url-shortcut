@@ -16,7 +16,8 @@ class URLGeneratorController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        $urls = URLGenerator::latest()->paginate(8);
+        return view('user.index', compact('urls'));
     }
 
     /**
@@ -64,7 +65,9 @@ class URLGeneratorController extends Controller
      */
     public function edit($id)
     {
-        //
+       $url =  URLGenerator::find($id);
+
+        return view('user.edit', compact('url'));
     }
 
     /**
@@ -76,7 +79,11 @@ class URLGeneratorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $url = URLGenerator::find($id);
+        $this->validate($request, $this->rules($id));
+        $url->update($this->attributes($request));
+        notify()->success('The URL Shortcut Updated successfully', 'Update URL Shortcut');
+        return redirect()->route('yahyaurl.index');
     }
 
     /**
@@ -87,8 +94,9 @@ class URLGeneratorController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        URLGEnerator::find($id)->delete();
+        notify()->warning('The URL Was deleted successfully', 'Delete URL');
+        return redirect()->route('yahyaurl.index');    }
 
     protected function rules($id = null){
         return[

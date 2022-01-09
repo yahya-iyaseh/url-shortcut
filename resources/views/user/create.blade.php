@@ -23,14 +23,6 @@
             <span class="d-block invalid-feedback">{{ $message }}</span>
           @enderror
         </div>
-        {{-- <div class="form-group">
-          <label for="">Extra Data</label>
-          <input type="text" class="form-control @error('data') is-invalid @enderror" id="data" name="data" aria-describedby="emailHelp" placeholder="Enter The Extra Data">
-          @error('data')
-            <span class="d-block invalid-feedback">{{ $message }}</span>
-          @enderror
-        </div> --}}
-
         <div class="form-group">
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="access" name="access" checked>

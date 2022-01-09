@@ -12,4 +12,12 @@
   <link href="{{ asset('temtem/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('temtem/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('temtem/css/ruang-admin.min.css') }}" rel="stylesheet">
+
+  @notifyCss
+  <style>
+    .notify {
+      z-index: 1000000 !important
+    }
+
+  </style>
 </head>
